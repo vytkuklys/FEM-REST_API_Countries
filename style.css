@@ -1,0 +1,7 @@
+.box{
+    width: 200px;
+    height: 400px;
+}
+.box__flag{
+    height: 50%;
+}
