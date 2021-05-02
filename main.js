@@ -1,3 +1,4 @@
+const regionToggle = document.querySelector('.controls__title');
 async function getCountries() {
     console.log("hi");
     const response = await fetch('https://restcountries.eu/rest/v2/all');
@@ -9,13 +10,13 @@ async function getCountries() {
 }
 
 function displayElements(flag, country, capital, region, population) {
-    const body = document.body;
+    const output = document.getElementById('output');
 
     const sectionEl = document.createElement('section');
     setAttributes(sectionEl, {
-        "class": "box"
+        "class": "output__box"
     });
-    body.appendChild(sectionEl);
+    output.appendChild(sectionEl);
 
     const imgEl = document.createElement('img');
     setAttributes(imgEl, {
@@ -26,41 +27,41 @@ function displayElements(flag, country, capital, region, population) {
     sectionEl.appendChild(imgEl);
 
     const textBoxEl = document.createElement('div');
-    textBoxEl.classList.add("box_content");
+    textBoxEl.classList.add("output__info");
     sectionEl.appendChild(textBoxEl);
 
     const h3El = document.createElement('h3');
-    h3El.classList.add('box__title');
+    h3El.classList.add('output__info-title');
     h3El.textContent = `${country}`;
     textBoxEl.appendChild(h3El);
 
     const p1El = document.createElement('p');
-    p1El.classList.add('box--bold');
+    p1El.classList.add('output--bold');
     p1El.textContent = "Population: ";
     textBoxEl.appendChild(p1El);
 
     const populationTextEl = document.createElement('span');
-    populationTextEl.classList.add('box__population');
+    populationTextEl.classList.add('output__info-population');
     populationTextEl.textContent = `${population}`;
     p1El.appendChild(populationTextEl);
 
     const p2El = document.createElement('p');
-    p2El.classList.add('box--bold');
+    p2El.classList.add('output--bold');
     p2El.textContent = "Region: ";
     textBoxEl.appendChild(p2El);
 
     const regionTextEl = document.createElement('span');
-    regionTextEl.classList.add('box__region');
+    regionTextEl.classList.add('output__info-region');
     regionTextEl.textContent = `${region}`;
     p2El.appendChild(regionTextEl);
 
     const p3El = document.createElement('p');
-    p3El.classList.add('box--bold');
+    p3El.classList.add('output--bold');
     p3El.textContent = "Capital: ";
     textBoxEl.appendChild(p3El);
 
     const capitalTextEl = document.createElement('span');
-    capitalTextEl.classList.add('box__capital');
+    capitalTextEl.classList.add('output__info-capital');
     capitalTextEl.textContent = `${capital}`;
     p3El.appendChild(capitalTextEl);
 
@@ -72,4 +73,9 @@ function setAttributes(el, attrs) {
     }
 }
 
+const handleClickShowRegions = () =>{
+    document.querySelector('.controls').classList.toggle('controls--JS');
+}
+
+regionToggle.addEventListener('click', handleClickShowRegions);
 getCountries();

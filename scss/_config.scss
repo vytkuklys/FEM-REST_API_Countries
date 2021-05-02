@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
+
+$font-main: 'Nunito Sans', sans-serif;
+
+$color: (
+    darkModeElements: hsl(209, 23%, 22%),
+    darkModeBody: hsl(207, 26%, 17%),
+    lightModeText: hsl(200, 15%, 8%),
+    lightModeInput: hsl(0, 0%, 52%),
+    lightModeBody: hsl(0, 0%, 98%),
+    uniTextElements: hsl(0, 0%, 100%)
+);
+
+@function color($color-name){
+    @return map-get($color, $color-name);
+}
+
+@mixin getPseudoIcon($left, $translateX, $icon, $color){
+    font-family: 'FontAwesome';
+    color: $color;
+    position: absolute;
+    font-size: 1rem;
+    top: 50%;
+    left: $left;
+    transform: translate($translateX, -50%);
+    content: $icon;
+}

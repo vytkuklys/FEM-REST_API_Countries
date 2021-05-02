@@ -1,0 +1,171 @@
+@import '_config.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    font-size: 14px;
+    font-family: $font-main;
+    color: color(lightModeText);
+}
+
+header {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.062);
+}
+main{
+    width: 95%;
+    margin: 0 auto;
+}
+.controls {
+    width: 100%;
+    padding: 1.25rem 0;
+
+    &__input {
+        position: relative;
+        max-width: 356px;
+
+        &::before {
+            @include getPseudoIcon(1.65rem, 0, "\f002", color(lightModeInput));
+        }
+
+        &-text {
+            width: 100%;
+            padding: 1.25rem 4rem;
+            border-radius: .5rem;
+            border: none;
+            outline-color: transparent;
+            color: color(lightModeInput);
+            box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+
+            &:focus {
+                outline-color: transparent;
+                border: none;
+            }
+        }
+    }
+
+    .controls__select {
+        max-width: 200px;
+        margin: 2.5rem 0 5%;
+        position: relative;
+        box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+
+        .controls__title{
+            position: relative;
+            padding: 1rem 1.65rem;
+            border-radius: .5rem;
+            font-weight: 600;
+            margin-bottom: .3rem;
+            cursor: pointer;
+
+            &:hover{
+                color: lighten(color(lightModeText), 15%);
+            }
+
+            &::after{
+                @include getPseudoIcon(0, 10.5rem, '\f107', black);
+                width: fit-content;
+                transform: translate(10.5rem, -50%) !important;
+                transition: transform .3s ease-in-out;
+
+            }
+        }
+
+        .controls__select-menu {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            border-radius: .5rem;
+            padding: .5rem 0;
+            box-shadow: 0px 1px 9px 3px rgba(0, 0, 0, 0.068);
+            transform: scaleY(0);
+            position: absolute;
+            z-index: 2;
+            transform-origin: top;
+            transition: transform .3s ease-in-out;
+            background-color: color(uniTextElements);
+        }
+
+        .controls__select-item {
+            background-color: transparent;
+            text-align: left;
+            border: none;
+            padding: .5rem 1.65rem;
+            font-weight: 300;
+            cursor: pointer;
+
+            &:hover{
+                font-weight: 600;
+            }
+        }
+    }
+
+    &.controls--JS{
+        .controls__title{
+
+            &::after{
+                transform: translate(10.5rem, -50%) rotate(180deg) !important;
+            }
+        }
+        .controls__select-menu{
+            transform: scaleY(1);
+        }
+    }
+}
+
+.output{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    // display: grid;
+    // grid-gap: 1.75rem;
+    // grid-template: auto / repeat(auto-fit, minmax(225px, 295px));
+    // justify-content: center;
+    // overflow: hidden;
+    &__box{
+        max-width: 300px;
+        box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+        border-radius: .5rem;
+    }
+
+    &__info{
+        padding: 1.25rem 1.65rem 3.25rem;
+
+        &-title{
+            padding-bottom: 1.1rem;
+            font-size: 1.25rem;
+        }
+
+        &-population, &-region, &-capital{
+            font-weight: 300;
+        }
+    }
+    &--bold{
+        font-weight: 600;
+        padding: .15rem 0;
+    }
+}
+
+img {
+    width: 300px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+}

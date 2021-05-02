@@ -1,0 +1,217 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  color: #111517;
+}
+
+header {
+  width: 100%;
+  height: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 5%;
+  -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.062);
+          box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.062);
+}
+
+main {
+  width: 95%;
+  margin: 0 auto;
+}
+
+.controls {
+  width: 100%;
+  padding: 1.25rem 0;
+}
+
+.controls__input {
+  position: relative;
+  max-width: 356px;
+}
+
+.controls__input::before {
+  font-family: 'FontAwesome';
+  color: #858585;
+  position: absolute;
+  font-size: 1rem;
+  top: 50%;
+  left: 1.65rem;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  content: "";
+}
+
+.controls__input-text {
+  width: 100%;
+  padding: 1.25rem 4rem;
+  border-radius: .5rem;
+  border: none;
+  outline-color: transparent;
+  color: #858585;
+  -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+          box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+}
+
+.controls__input-text:focus {
+  outline-color: transparent;
+  border: none;
+}
+
+.controls .controls__select {
+  max-width: 200px;
+  margin: 2.5rem 0 5%;
+  position: relative;
+  -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+          box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+}
+
+.controls .controls__select .controls__title {
+  position: relative;
+  padding: 1rem 1.65rem;
+  border-radius: .5rem;
+  font-weight: 600;
+  margin-bottom: .3rem;
+  cursor: pointer;
+}
+
+.controls .controls__select .controls__title:hover {
+  color: #323e43;
+}
+
+.controls .controls__select .controls__title::after {
+  font-family: 'FontAwesome';
+  color: black;
+  position: absolute;
+  font-size: 1rem;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translate(10.5rem, -50%);
+          transform: translate(10.5rem, -50%);
+  content: "";
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  transform: translate(10.5rem, -50%) !important;
+  -webkit-transition: -webkit-transform .3s ease-in-out;
+  transition: -webkit-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;
+  transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+}
+
+.controls .controls__select .controls__select-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  border-radius: .5rem;
+  padding: .5rem 0;
+  -webkit-box-shadow: 0px 1px 9px 3px rgba(0, 0, 0, 0.068);
+          box-shadow: 0px 1px 9px 3px rgba(0, 0, 0, 0.068);
+  -webkit-transform: scaleY(0);
+          transform: scaleY(0);
+  position: absolute;
+  z-index: 2;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  -webkit-transition: -webkit-transform .3s ease-in-out;
+  transition: -webkit-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;
+  transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+  background-color: white;
+}
+
+.controls .controls__select .controls__select-item {
+  background-color: transparent;
+  text-align: left;
+  border: none;
+  padding: .5rem 1.65rem;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.controls .controls__select .controls__select-item:hover {
+  font-weight: 600;
+}
+
+.controls.controls--JS .controls__title::after {
+  -webkit-transform: translate(10.5rem, -50%) rotate(180deg) !important;
+          transform: translate(10.5rem, -50%) rotate(180deg) !important;
+}
+
+.controls.controls--JS .controls__select-menu {
+  -webkit-transform: scaleY(1);
+          transform: scaleY(1);
+}
+
+.output {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.output__box {
+  max-width: 300px;
+  -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+          box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+  border-radius: .5rem;
+}
+
+.output__info {
+  padding: 1.25rem 1.65rem 3.25rem;
+}
+
+.output__info-title {
+  padding-bottom: 1.1rem;
+  font-size: 1.25rem;
+}
+
+.output__info-population, .output__info-region, .output__info-capital {
+  font-weight: 300;
+}
+
+.output--bold {
+  font-weight: 600;
+  padding: .15rem 0;
+}
+
+img {
+  width: 300px;
+  width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+/*# sourceMappingURL=main.css.map */
