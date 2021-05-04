@@ -1,0 +1,59 @@
+// @import '_config.scss';
+body.dark-mode {
+    background-color: color(darkModeBody);
+    color: color(uniTextElements);
+
+    ::placeholder {
+        color: color(uniTextElements);
+    }
+
+    .header{
+        &__button{
+            color: color(uniTextElements);
+        }
+    }
+
+    .controls {
+
+        &__input {
+
+            &::before {
+                color: color(uniTextElements);
+            }
+
+            &-text {
+                background-color: color(darkModeElements);
+                color: color(uniTextElements);
+            }
+        }
+
+        .controls__select {
+
+            .controls__title {
+                background-color: color(darkModeElements);
+
+                &:hover {
+                    color: color(uniTextElements);
+                }
+
+                &::after {
+                    color: color(uniTextElements);
+                }
+            }
+
+            .controls__select-menu {
+                background-color: color(darkModeElements);
+                color: color(uniTextElements);
+            }
+
+            .controls__select-item {
+                background-color: color(darkModeElements);
+                color: color(uniTextElements);
+            }
+        }
+    }
+
+    .output__info{
+        background-color: color(darkModeElements);
+    }
+}

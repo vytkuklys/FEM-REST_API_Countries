@@ -25,3 +25,9 @@ $color: (
     transform: translate($translateX, -50%);
     content: $icon;
 }
+
+@mixin media-s{
+    @media screen and (max-width: 550px){
+        @content;
+    }
+}

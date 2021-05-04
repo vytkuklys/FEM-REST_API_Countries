@@ -1,7 +1,27 @@
 const regionToggle = document.querySelector('.controls__title');
-async function getCountries() {
-    console.log("hi");
+const modeSwitcher = document.querySelector('.header__button');
+const regions = document.querySelectorAll('.controls__select-item');
+
+async function getAllCountries() {
     const response = await fetch('https://restcountries.eu/rest/v2/all');
+    const json = await response.json();
+    console.log(json[0].capital);
+    json.forEach((country, i) => {
+        displayElements(country.flag, country.name, country.capital, country.region, country.population);
+    });
+}
+
+async function getSpecificCountry(country) {
+    const response = await fetch(`https://restcountries.eu/rest/v2/name/${country}`);
+    const json = await response.json();
+    console.log(json[0].capital);
+    json.forEach((country, i) => {
+        displayElements(country.flag, country.name, country.capital, country.region, country.population);
+    });
+}
+
+async function getRegion(region) {
+    const response = await fetch(`https://restcountries.eu/rest/v2/region/${region}`);
     const json = await response.json();
     console.log(json[0].capital);
     json.forEach((country, i) => {
@@ -73,9 +93,25 @@ function setAttributes(el, attrs) {
     }
 }
 
-const handleClickShowRegions = () =>{
+const handleClickShowRegions = (e) => {
+    e.preventDefault();
     document.querySelector('.controls').classList.toggle('controls--JS');
 }
 
-regionToggle.addEventListener('click', handleClickShowRegions);
-getCountries();
+const handleClickSwitchMode = (e) => {
+    e.preventDefault();
+    document.body.classList.toggle('dark-mode');
+}
+
+const handleClickSearchRegion = (region)=>{
+    getRegion(region.toLowerCase());
+}
+
+regionToggle.addEventListener('click', (e) => handleClickShowRegions(e));
+
+modeSwitcher.addEventListener('click', (e) => handleClickSwitchMode(e));
+
+regions.forEach(region =>{
+    region.addEventListener('click', ()=> handleClickSearchRegion(region.textContent));
+});
+getAllCountries();
