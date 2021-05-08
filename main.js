@@ -5,13 +5,12 @@ const regions = document.querySelectorAll('.controls__select-item');
 async function getAllCountries() {
     const response = await fetch('https://restcountries.eu/rest/v2/all');
     const json = await response.json();
-    console.log(json[0].capital);
     json.forEach((country, i) => {
         displayElements(country.flag, country.name, country.capital, country.region, country.population);
     });
 }
 
-async function getSpecificCountry(country) {
+async function getSearchedCountry(country) {
     const response = await fetch(`https://restcountries.eu/rest/v2/name/${country}`);
     const json = await response.json();
     console.log(json[0].capital);
@@ -23,7 +22,7 @@ async function getSpecificCountry(country) {
 async function getRegion(region) {
     const response = await fetch(`https://restcountries.eu/rest/v2/region/${region}`);
     const json = await response.json();
-    console.log(json[0].capital);
+    clearAllCountries();
     json.forEach((country, i) => {
         displayElements(country.flag, country.name, country.capital, country.region, country.population);
     });
@@ -87,6 +86,13 @@ function displayElements(flag, country, capital, region, population) {
 
 }
 
+const clearAllCountries = () => {
+    const output = document.getElementById('output');
+    while (output.firstChild) {
+        output.removeChild(output.firstChild);
+    }
+}
+
 function setAttributes(el, attrs) {
     for (var key in attrs) {
         el.setAttribute(key, attrs[key]);
@@ -100,6 +106,14 @@ const handleClickShowRegions = (e) => {
 
 const handleClickSwitchMode = (e) => {
     e.preventDefault();
+    const body = document.body;
+    const btn = document.querySelector('.header__button');
+
+    if(body.classList.contains('dark-mode')){
+        btn.textContent = "Dark Mode";
+    }else{
+        btn.textContent = "Light Mode";
+    }
     document.body.classList.toggle('dark-mode');
 }
 

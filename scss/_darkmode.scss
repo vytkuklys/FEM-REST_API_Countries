@@ -1,4 +1,3 @@
-// @import '_config.scss';
 body.dark-mode {
     background-color: color(darkModeBody);
     color: color(uniTextElements);
@@ -8,6 +7,7 @@ body.dark-mode {
     }
 
     .header{
+        background-color: color(darkModeElements);
         &__button{
             color: color(uniTextElements);
         }

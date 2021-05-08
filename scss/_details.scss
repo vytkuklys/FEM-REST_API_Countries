@@ -1,0 +1,45 @@
+.return{
+    padding: 2.25rem 5% 3.5rem;
+    &__btn{
+        position: relative;
+        padding: .5rem 2rem .5rem 2.5rem;
+        border-radius: .3rem;
+        border: none;
+        outline-color: transparent;
+        background-color: color(uniTextElements);
+        box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+
+        &::before{
+            @include getPseudoIcon(1rem, 0, "\f30a", color(lightModeInput));
+        }
+    }
+}
+
+.details{
+    // display: flex;
+    // justify-content: space-between;
+    margin: 0 5%;
+    img{
+        // float: left;
+        // height: 350px;
+        width: 100%;
+        object-fit: cover;
+
+    }
+    
+    
+    &__title{
+        font-size: clamp(1.35rem, 2.25vw, 1.75rem);
+        padding: 1.75rem 0 1.5rem;
+    }
+
+
+    &__btn{
+        padding: .5rem .75rem;
+        border-radius: .3rem;
+        border: none;
+        outline-color: transparent;
+        background-color: color(uniTextElements);
+        box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+    }
+}
