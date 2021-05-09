@@ -60,12 +60,36 @@ body.dark-mode .controls .controls__select .controls__select-item {
   color: white;
 }
 
+body.dark-mode .controls .controls__select .controls__select-item:hover {
+  background-color: rgba(128, 128, 128, 0.212);
+}
+
 body.dark-mode .output__info {
   background-color: #2b3945;
 }
 
+body.dark-mode .return__btn {
+  background-color: #2b3945;
+  color: white;
+}
+
+body.dark-mode .details__btn {
+  background-color: #2b3945;
+  color: white;
+}
+
+.details-page {
+  font-size: 16px;
+}
+
 .return {
   padding: 2.25rem 5% 3.5rem;
+}
+
+@media screen and (min-width: 538px) {
+  .return {
+    padding: 3.5rem 0;
+  }
 }
 
 .return__btn {
@@ -73,10 +97,10 @@ body.dark-mode .output__info {
   padding: .5rem 2rem .5rem 2.5rem;
   border-radius: .3rem;
   border: none;
-  outline-color: transparent;
   background-color: white;
-  -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
-          box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.13);
+          box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.13);
 }
 
 .return__btn::before {
@@ -92,28 +116,131 @@ body.dark-mode .output__info {
 }
 
 .details {
+  padding-bottom: 5%;
   margin: 0 5%;
+  max-width: 450px;
 }
 
-.details img {
+@media screen and (min-width: 538px) {
+  .details {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .details {
+    margin: initial;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    max-width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+}
+
+.details__img {
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  position: relative;
+  margin-right: 4%;
+  max-height: 385px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.details__img .details__flag {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (min-width: 900px) {
+  .details__info {
+    margin-left: 4%;
+    width: 100%;
+  }
 }
 
 .details__title {
-  font-size: clamp(1.35rem, 2.25vw, 1.75rem);
-  padding: 1.75rem 0 1.5rem;
+  font-size: clamp(1.35rem, 3.25vw, 2rem);
+  padding: 2rem 0 1rem;
+}
+
+@media screen and (min-width: 900px) {
+  .details__title {
+    padding: 0 0 1.25rem;
+  }
+}
+
+.details__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+@media screen and (min-width: 900px) {
+  .details__list {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.details__list-items {
+  padding-bottom: 2rem;
+  width: 50%;
+}
+
+@media screen and (min-width: 900px) {
+  .details__list-items {
+    padding-bottom: 2.5rem;
+  }
+}
+
+.details__list-item {
+  font-weight: 600;
+  padding: .35rem 0;
+}
+
+.details__list-item span {
+  font-weight: 400;
+}
+
+.details__btn-title--display {
+  display: block;
+  font-weight: 600;
+  padding-right: .75rem;
+}
+
+@media screen and (min-width: 538px) {
+  .details__btn-title--display {
+    display: inline;
+  }
 }
 
 .details__btn {
-  padding: .5rem .75rem;
+  padding: .3rem .75rem;
   border-radius: .3rem;
+  margin: .75rem .3rem 0 0;
+  min-width: 5.5rem;
   border: none;
-  outline-color: transparent;
+  cursor: pointer;
   background-color: white;
-  -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
-          box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+  -webkit-box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.13);
+          box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.13);
 }
 
 * {
@@ -181,6 +308,12 @@ body {
 main {
   width: 95%;
   margin: 0 auto;
+}
+
+@media screen and (min-width: 538px) {
+  main {
+    width: 90%;
+  }
 }
 
 ul {
@@ -304,7 +437,7 @@ ul {
 }
 
 .controls .controls__select .controls__select-item:hover {
-  font-weight: 600;
+  background-color: rgba(128, 128, 128, 0.089);
 }
 
 .controls.controls--JS .controls__title::after {
@@ -328,7 +461,7 @@ ul {
           justify-content: space-between;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (min-width: 538px) {
   .output {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
@@ -337,7 +470,7 @@ ul {
 }
 
 .output__box {
-  max-width: 275px;
+  max-width: 295px;
   -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
           box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
   border-radius: .5rem;

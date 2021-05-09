@@ -27,7 +27,13 @@ $color: (
 }
 
 @mixin media-s{
-    @media screen and (max-width: 550px){
+    @media screen and (min-width: 538px){
+        @content;
+    }
+}
+
+@mixin media-m{
+    @media screen and (min-width: 900px){
         @content;
     }
 }

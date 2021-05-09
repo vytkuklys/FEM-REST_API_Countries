@@ -1,45 +1,125 @@
-.return{
+.details-page{
+    font-size: 16px;
+}
+.return {
     padding: 2.25rem 5% 3.5rem;
-    &__btn{
+
+    @include media-s{
+        padding: 3.5rem 0;
+    }
+
+    &__btn {
         position: relative;
         padding: .5rem 2rem .5rem 2.5rem;
         border-radius: .3rem;
         border: none;
-        outline-color: transparent;
         background-color: color(uniTextElements);
-        box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+        cursor: pointer;
+        box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.13);
 
-        &::before{
+        &::before {
             @include getPseudoIcon(1rem, 0, "\f30a", color(lightModeInput));
         }
     }
 }
 
-.details{
-    // display: flex;
-    // justify-content: space-between;
+.details {
+    padding-bottom: 5%;
     margin: 0 5%;
-    img{
-        // float: left;
-        // height: 350px;
+    max-width: 450px;
+
+    @include media-s{
+        margin: 0 auto;
+    }
+
+    @include media-m{
+        margin: initial;
+        display: flex;
+        align-items: center;
+        max-width: 100%;
+        max-height: 500px;
+        overflow: hidden;
+        height: fit-content;
+    }
+
+    &__img{
         width: 100%;
-        object-fit: cover;
+        position: relative;
+        margin-right: 4%;
+        max-height: 385px;
+        height: 100%;
+        overflow: hidden;
+        
+        .details__flag {
+            width: 100%; 
+            height: 100%;
+        }
+    }
 
+
+    &__info{
+        @include media-m{
+            margin-left: 4%;
+            width: 100%;
+        }
+    }
+
+    &__title {
+        font-size: clamp(1.35rem, 3.25vw, 2rem);
+        padding: 2rem 0 1rem;
+
+        @include media-m{
+            padding: 0 0 1.25rem;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+
+        @include media-m{
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        &-items {
+            padding-bottom: 2rem;
+            width: 50%;
+            
+            @include media-m{
+                padding-bottom: 2.5rem;
+            }
+        }
+
+        &-item {
+            font-weight: 600;
+            padding: .35rem 0;
+
+            span{
+                font-weight: 400;
+            }
+        }
+    }
+
+    &__btn-title--display{
+        display: block;
+        font-weight: 600;
+        padding-right: .75rem;
+
+        @include media-s{
+            display: inline;
+        }
     }
     
-    
-    &__title{
-        font-size: clamp(1.35rem, 2.25vw, 1.75rem);
-        padding: 1.75rem 0 1.5rem;
-    }
-
-
-    &__btn{
-        padding: .5rem .75rem;
+    &__btn {
+        padding: .3rem .75rem;
         border-radius: .3rem;
+        margin: .75rem .3rem 0 0;
+        min-width: 5.5rem;
         border: none;
-        outline-color: transparent;
+        cursor: pointer;
         background-color: color(uniTextElements);
-        box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+        box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.13);
+
     }
 }

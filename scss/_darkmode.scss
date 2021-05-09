@@ -49,11 +49,29 @@ body.dark-mode {
             .controls__select-item {
                 background-color: color(darkModeElements);
                 color: color(uniTextElements);
+
+                &:hover {
+                    background-color: rgba(128, 128, 128, 0.212);
+                }
             }
         }
     }
 
     .output__info{
         background-color: color(darkModeElements);
+    }
+    //details page
+    .return {
+        &__btn {
+            background-color: color(darkModeElements);
+            color: color(uniTextElements);
+        }
+    }
+
+    .details {
+        &__btn{
+            background-color: color(darkModeElements);
+            color: color(uniTextElements);
+        }
     }
 }
