@@ -66,6 +66,11 @@ ul{
     width: 100%;
     padding: 1.75rem 0 1.25rem;
 
+    @include media-m{
+        display: flex;
+        justify-content: space-between;
+    }
+
     &__input {
         position: relative;
         max-width: 356px;
@@ -88,6 +93,30 @@ ul{
                 border: none;
             }
         }
+        &-btn {
+            position: absolute;
+            right: 0;
+            height: 100%;
+            width: 3.5rem;
+            border-radius: .25rem;
+            border: none;
+            display: none;
+            transition: background-color .15s ease-in-out;
+            background-color: transparent;
+            cursor: pointer;
+
+            &:hover {
+                background-color: lighten(color(lightModeInput), 45%);
+            }
+
+            &::before {
+                @include getPseudoIcon(50%, -50%, "\f00d", #222222);
+            }
+
+            &.btn-exit__show {
+                display: inline-block;
+            }
+        }
     }
 
     .controls__select {
@@ -96,6 +125,11 @@ ul{
         position: relative;
         box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
 
+        @include media-m{
+            margin: initial;
+            max-width: initial;
+            min-width: 200px;
+        }
         .controls__title {
             position: relative;
             padding: 1rem 1.65rem;
@@ -166,15 +200,26 @@ ul{
     flex-wrap: wrap;
     justify-content: space-between;
 
+
     @include media-s{
         justify-content: center;
     }
 
+    @include media-m{
+        justify-content: space-between;
+    }
+
     &__box {
         max-width: 295px;
-        box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
         border-radius: .5rem;
         margin-bottom: 2.75rem;
+        cursor: pointer;
+        box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+        transition: box-shadow .25s ease-out;
+
+        &:hover{
+            box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.212);
+        }
     }
 
     &__info {

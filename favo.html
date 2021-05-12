@@ -1,49 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/85a9462cb0.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="dist/css/main.css">
-    <title>Play around</title>
+	<meta charset='UTF-8'>
+	
+	<title>Simple Loader</title>
+	
+	<style>
+		/* This only works with JavaScript, 
+		   if it's not present, don't show loader */
+		.no-js #loader { display: none;  }
+		.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+	</style>
+	
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+	
+	
+	<script src="https://github.com/Modernizr/Modernizr/raw/master/modernizr.js"></script>
+	<script>
+		// Wait for window load
+		$(window).load(function() {
+			// Animate loader off screen
+			$("#loader").animate({
+				top: -200
+			}, 1500);
+		});
+	</script>	
 </head>
-<body class="details-page">
-    <header class="header">
-        <h2 class="header__h2">Where in the world?</h2>
-        <button class="header__button" onfocus="blur()" aria-label="Change theme">Light Mode</button>
-    </header>
-    <main>
-        <div class="return">
-            <button onfocus="blur()" aria-label="return to previous page" class="return__btn">Back</button>
-        </div>
-        <article class="details">
-            <img src="https://restcountries.eu/data/bel.svg" alt="" class="details__flag">
-            <div class="details__info">
-                <h3 class="details__title">Belgium</h3>
-                <div class="details__list">
-                    <ul class="details__list-items">
-                        <li class="details__list-item" id="nativeName">Native Name: <span>Belgie</span></li>
-                        <li class="details__list-item" id="population">Population: <span>11,319,511</span></li>
-                        <li class="details__list-item" id="region">Region: <span>Europe</span></li>
-                        <li class="details__list-item" id="subregion">Sub Region: <span>Western Europe</span></li>
-                        <li class="details__list-item" id="capital">Capital: <span>Brussels</span></li>
-                    </ul>
-                    <ul class="details__list-items">
-                        <li class="details__list-item" id="topLevelDomain">Top Level Domain: <span>.be</span></li>
-                        <li class="details__list-item" id="currencies">Currencies: <span>Euro</span></li>
-                        <li class="details__list-item" id="languages">Languages: <span>Dutch, French, German</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <span class="details__btn-title--display">Border Countries:</span>
-                    <button onfocus="blur()" aria-label="select a country" class="details__btn">France</button>
-                    <button onfocus="blur()" aria-label="select a country" class="details__btn">Germany</button>
-                    <button onfocus="blur()" aria-label="select a country" class="details__btn">Netherlands</button>
-                </div>
-            </div>
-        </article>
-    </main>
-    <!-- <script src="main.js"></script> -->
+
+<body>
+		
+	
+	<img src="download.png" id="loader">
+	
+	
+	<img src="//farm6.static.flickr.com/5299/5400751421_55d49b2786_o.jpg">
+		
 </body>
+
 </html>

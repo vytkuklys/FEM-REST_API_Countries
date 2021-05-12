@@ -64,6 +64,11 @@ body.dark-mode .controls .controls__select .controls__select-item:hover {
   background-color: rgba(128, 128, 128, 0.212);
 }
 
+body.dark-mode .output__box:hover {
+  -webkit-box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.13);
+          box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.13);
+}
+
 body.dark-mode .output__info {
   background-color: #2b3945;
 }
@@ -76,6 +81,11 @@ body.dark-mode .return__btn {
 body.dark-mode .details__btn {
   background-color: #2b3945;
   color: white;
+}
+
+body.dark-mode .details__btn:hover {
+  -webkit-box-shadow: 0px 0px 9px 1px rgba(255, 255, 255, 0.11);
+          box-shadow: 0px 0px 9px 1px rgba(255, 255, 255, 0.11);
 }
 
 .details-page {
@@ -119,6 +129,19 @@ body.dark-mode .details__btn {
   padding-bottom: 5%;
   margin: 0 5%;
   max-width: 450px;
+  display: none;
+}
+
+.details.details-open {
+  display: block;
+}
+
+@media screen and (min-width: 900px) {
+  .details.details-open {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
 }
 
 @media screen and (min-width: 538px) {
@@ -130,9 +153,6 @@ body.dark-mode .details__btn {
 @media screen and (min-width: 900px) {
   .details {
     margin: initial;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -241,6 +261,15 @@ body.dark-mode .details__btn {
   background-color: white;
   -webkit-box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.13);
           box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.13);
+  -webkit-transition: -webkit-box-shadow .25s ease-out;
+  transition: -webkit-box-shadow .25s ease-out;
+  transition: box-shadow .25s ease-out;
+  transition: box-shadow .25s ease-out, -webkit-box-shadow .25s ease-out;
+}
+
+.details__btn:hover {
+  -webkit-box-shadow: 0px 0px 9px 1px rgba(0, 0, 0, 0.205);
+          box-shadow: 0px 0px 9px 1px rgba(0, 0, 0, 0.205);
 }
 
 * {
@@ -325,6 +354,17 @@ ul {
   padding: 1.75rem 0 1.25rem;
 }
 
+@media screen and (min-width: 900px) {
+  .controls {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
 .controls__input {
   position: relative;
   max-width: 356px;
@@ -358,12 +398,54 @@ ul {
   border: none;
 }
 
+.controls__input-btn {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 3.5rem;
+  border-radius: .25rem;
+  border: none;
+  display: none;
+  -webkit-transition: background-color .15s ease-in-out;
+  transition: background-color .15s ease-in-out;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.controls__input-btn:hover {
+  background-color: #f7f7f7;
+}
+
+.controls__input-btn::before {
+  font-family: 'FontAwesome';
+  color: #222222;
+  position: absolute;
+  font-size: 1rem;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  content: "";
+}
+
+.controls__input-btn.btn-exit__show {
+  display: inline-block;
+}
+
 .controls .controls__select {
   max-width: 200px;
   margin: 2.5rem 0 5%;
   position: relative;
   -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
           box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+}
+
+@media screen and (min-width: 900px) {
+  .controls .controls__select {
+    margin: initial;
+    max-width: initial;
+    min-width: 200px;
+  }
 }
 
 .controls .controls__select .controls__title {
@@ -469,12 +551,30 @@ ul {
   }
 }
 
+@media screen and (min-width: 900px) {
+  .output {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
 .output__box {
   max-width: 295px;
-  -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
-          box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
   border-radius: .5rem;
   margin-bottom: 2.75rem;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+          box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
+  -webkit-transition: -webkit-box-shadow .25s ease-out;
+  transition: -webkit-box-shadow .25s ease-out;
+  transition: box-shadow .25s ease-out;
+  transition: box-shadow .25s ease-out, -webkit-box-shadow .25s ease-out;
+}
+
+.output__box:hover {
+  -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.212);
+          box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.212);
 }
 
 .output__info {

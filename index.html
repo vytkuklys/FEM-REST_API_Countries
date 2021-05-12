@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/85a9462cb0.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="dist/css/main.css">
+    <link rel="stylesheet" href="dist/css/main.css?rnd=123">
     <title>Countries API</title>
 </head>
 <body>
@@ -17,6 +17,7 @@
         <div class="controls">
             <div class="controls__input">
                 <input class="controls__input-text" type="text" placeholder="Search for a country..." aria-label="Search bar">
+                <button class="controls__input-btn" onfocus="blur()" aria-label="close button"></button>
             </div>
             <div class="controls__select">
                 <p class="controls__title">Filter by Region<span class="controls__title-arrow"></span></p>
@@ -51,15 +52,12 @@
                         <li class="details__list-item" id="languages">Languages: <span>Dutch, French, German</span></li>
                     </ul>
                 </div>
-                <div>
-                    <span class="details__btn-title--display">Border Countries:</span>
-                    <button onfocus="blur()" aria-label="select a country" class="details__btn">France</button>
-                    <button onfocus="blur()" aria-label="select a country" class="details__btn">Germany</button>
-                    <button onfocus="blur()" aria-label="select a country" class="details__btn">Netherlands</button>
+                <div class="details__btns">
+                    <span class="details__btn-title--display" id="details__title">Border Countries:</span>
                 </div>
             </div>
         </article>
     </main>
-    <script type="module" src="main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
