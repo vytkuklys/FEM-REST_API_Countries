@@ -74,14 +74,13 @@ const handleSelectedCountry = async country => {
     if (!json) return;
     deleteAllCountries();
     elements.searchInput.value = '';
-    json.every(row => {
+    json.every(async row => {
         if (row.name === country) {
-            renderDetailsPage(row);
+            await renderDetailsPage(row);
+            addBtnEvents();
             return;
         }
-        return true;
     });
-    addBtnEvents();
 }
 
 export const handleBordersButtons = async bordersAlpha3 => {
@@ -117,10 +116,12 @@ const addCardEvents = () => {
     })
 }
 
-const addBtnEvents = () => {
+export const addBtnEvents = () => {
     const btns = document.querySelectorAll('.details__btn');
     btns.forEach(btn => {
+        console.log('unoDosTres');
         btn.addEventListener('click', () => {
+
             const country = btn.textContent;
             handleSelectedCountry(country);
         }, {
