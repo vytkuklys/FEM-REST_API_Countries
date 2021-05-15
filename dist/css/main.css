@@ -756,6 +756,12 @@ ul {
   transition: box-shadow .25s ease-out, -webkit-box-shadow .25s ease-out;
 }
 
+@media screen and (min-width: 1335px) {
+  .output__box {
+    margin-bottom: 4.25rem;
+  }
+}
+
 .output__box:hover {
   -webkit-box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.212);
           box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.212);
