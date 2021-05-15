@@ -29,7 +29,6 @@ body.dark-mode {
         }
 
         .controls__select {
-
             .controls__title {
                 background-color: color(darkModeElements);
 
@@ -59,6 +58,7 @@ body.dark-mode {
     }
 
     .output__box{
+        background-color: color(darkModeElements);
         &:hover{
             box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.13);
         }
@@ -68,10 +68,13 @@ body.dark-mode {
     }
 
     //details page
-    .return {
-        &__btn {
+    .details__return {
+        &-btn {
             background-color: color(darkModeElements);
             color: color(uniTextElements);
+            &:hover{
+                box-shadow: 0px 0px 9px 1px rgba(255, 255, 255, 0.11);
+            }
         }
     }
 

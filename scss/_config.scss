@@ -37,3 +37,9 @@ $color: (
         @content;
     }
 }
+
+@mixin media-l{
+    @media screen and (min-width: 1335px){
+        @content;
+    }
+}

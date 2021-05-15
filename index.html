@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/85a9462cb0.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="dist/css/main.css?rnd=123">
+    <link rel="prefetch" href="images/no_results.svg">
     <title>Countries API</title>
 </head>
+
 <body>
     <header class="header">
-        <h2 class="header__h2">Where in the world?</h2>
-        <button class="header__button" onfocus="blur()" aria-label="Change theme">Light Mode</button>
+        <div class="header__container">
+            <h2 class="header__h2">Where in the world?</h2>
+            <button class="header__button" onfocus="blur()" aria-label="Change theme">Light Mode</button>
+        </div>
     </header>
     <main>
         <div class="controls">
             <div class="controls__input">
-                <input class="controls__input-text" type="text" placeholder="Search for a country..." aria-label="Search bar">
+                <input class="controls__input-text" type="text" placeholder="Search for a country..."
+                    aria-label="Search bar">
                 <button class="controls__input-btn" onfocus="blur()" aria-label="close button"></button>
             </div>
             <div class="controls__select">
                 <p class="controls__title">Filter by Region<span class="controls__title-arrow"></span></p>
                 <div class="controls__select-menu">
+                    <button class="controls__select-item">All</button>
                     <button class="controls__select-item">Africa</button>
                     <button class="controls__select-item">Americas</button>
                     <button class="controls__select-item">Asia</button>
@@ -30,11 +37,13 @@
                 </div>
             </div>
         </div>
-        <div id="output" class="output">
+        <div class="details__return">
+            <button onfocus="blur()" aria-label="return to previous page" class="details__return-btn">Back</button>
         </div>
+        <div id="output" class="output"></div>
         <article class="details">
-            <div class="details__img" >
-                <img src="https://restcountries.eu/data/alb.svg" alt="Country flag" class="details__flag">
+            <div class="details__img">
+                <img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Country flag" class="details__flag">
             </div>
             <div class="details__info">
                 <h3 class="details__title">Belgium</h3>
@@ -60,4 +69,5 @@
     </main>
     <script type="module" src="js/main.js"></script>
 </body>
+
 </html>

@@ -5,75 +5,83 @@ import {
     renderCountryCard,
     renderDetailsPage,
     renderBordersButtons,
+    renderNoResultsFound,
+    renderLoader,
     deleteAllCountries,
     deleteBordersButtons,
     hideDetailsPage,
     toggleRegionMenu,
     toggleExitBtn,
+    toggleLoader,
     switchTheme
 } from './domManipulation.js';
 import {
     lazyLoad,
     shouldDisplayBorderNames
 } from './helper.js';
+import {
+    getAllCountries,
+    getSelectedRegion,
+    getSearchedCountry,
+    getBorderNames,
+    getCountryData
+} from './apiCalls.js';
 
-async function getAllCountries() {
-    const response = await fetch('https://restcountries.eu/rest/v2/all?fields=flag;name;capital;population;region');
-    const json = await response.json();
+const handleAllCountries = async () => {
+    toggleLoader();
+    const json = await getAllCountries();
+    if (!json) return;
     json.forEach((country, i) => {
         renderCountryCard(country.flag, country.name, country.capital, country.region, country.population);
     });
     addCardEvents();
-}
-
-async function getSearchedCountry(country) {
-    try {
-        const response = await fetch(`https://restcountries.eu/rest/v2/name/${country}?fields=flag;name;capital;population;region`);
-        if (response.status !== 404) {
-            const json = await response.json();
-            deleteAllCountries();
-            hideDetailsPage();
-            json.forEach((country, i) => {
-                renderCountryCard(country.flag, country.name, country.capital, country.region, country.population);
-            });
-            addCardEvents();
-        }
-    } catch (e) {
-        console.log(e);
-    }
+    toggleLoader();
 }
 
 async function handleSelectedRegion(region) {
-    toggleRegionMenu();
-    hideDetailsPage();
-    const response = await fetch(`https://restcountries.eu/rest/v2/region/${region}?fields=flag;name;capital;population;region`);
-    const json = await response.json();
+    toggleLoader();
     deleteAllCountries();
+    toggleRegionMenu();
+    if (region === 'all') {
+        handleAllCountries();
+        toggleLoader();
+        return;
+    }
+    const json = await getSelectedRegion(region);
+    if (!json) return;
     json.forEach((country, i) => {
         renderCountryCard(country.flag, country.name, country.capital, country.region, country.population);
     });
     addCardEvents();
+    toggleLoader();
 }
 
-const getCountryData = async country => {
-    try {
-        const response = await fetch(`https://restcountries.eu/rest/v2/name/${country}?fields=flag;name;capital;population;region;nativeName;subregion;currencies;languages;borders;topLevelDomain`);
-        const json = await response.json();
-        return json;
-    } catch (e) {
-        console.log(e);
+const handleCountrySearch = async country => {
+    const json = await getSearchedCountry(country);
+    deleteAllCountries();
+    if (json) {
+        json.forEach((country, i) => {
+            renderCountryCard(country.flag, country.name, country.capital, country.region, country.population);
+        });
+        addCardEvents();
+    } else {
+        renderNoResultsFound();
     }
 }
 
-const getBorderNames = async borders => {
-    try {
-        const response = await fetch(`https://restcountries.eu/rest/v2/all?fields=name;alpha3Code`);
-        const json = await response.json();
-        LocalStorage.addCountries(json);
-        return LocalStorage.getRelevantCountries(borders);
-    } catch (e) {
-        console.log(e);
-    }
+const handleSelectedCountry = async country => {
+    const json = await getCountryData(country);
+    if (!json) return;
+    deleteAllCountries();
+    elements.searchInput.value = '';
+    json.every(row => {
+        if (row.name === country) {
+            renderDetailsPage(row);
+            return;
+        }
+        return true;
+    });
+    addBtnEvents();
 }
 
 export const handleBordersButtons = async bordersAlpha3 => {
@@ -90,13 +98,9 @@ export const handleBordersButtons = async bordersAlpha3 => {
     renderBordersButtons(names);
 }
 
-const handleSelectedCountry = async country => {
-    const json1 = await getCountryData(country);
-    if (!json1) return;
-
-    deleteAllCountries();
-    renderDetailsPage(json1[0]);
-    addBtnEvents();
+const handleReturnToHomePage = () => {
+    hideDetailsPage();
+    handleAllCountries();
 }
 
 const addCardEvents = () => {
@@ -125,9 +129,6 @@ const addBtnEvents = () => {
     })
 }
 
-elements.regionToggle.addEventListener('click', (e) => toggleRegionMenu(e));
-
-
 elements.regions.forEach(region => {
     region.addEventListener('click', () => {
         handleSelectedRegion(region.textContent.toLowerCase());
@@ -139,16 +140,20 @@ elements.searchInput.addEventListener("keyup", event => {
         return;
     }
     if (elements.searchInput.value) {
-        getSearchedCountry(elements.searchInput.value);
+        handleCountrySearch(elements.searchInput.value);
         toggleExitBtn();
     }
 });
-
 
 elements.btnExit.addEventListener('click', () => {
     elements.searchInput.value = '';
     elements.btnExit.classList.remove('btn-exit__show');
 });
 
-elements.modeSwitcher.addEventListener('click', (e) => switchTheme(e));
-getAllCountries();
+elements.regionToggle.addEventListener('click', (e) => toggleRegionMenu(e));
+elements.themeSwitch.addEventListener('click', (e) => switchTheme(e));
+
+renderLoader();
+elements.btnReturn.addEventListener('click', handleReturnToHomePage);
+
+handleAllCountries();

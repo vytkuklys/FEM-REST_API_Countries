@@ -2,22 +2,26 @@
     font-size: 16px;
 }
 
-.return {
+.details__return {
     padding: 2.25rem 5% 3.5rem;
-
+    display: none;
     @include media-s {
-        padding: 3.5rem 0;
+        padding: 4rem 0;
     }
 
-    &__btn {
+    &-btn {
         position: relative;
         padding: .5rem 2rem .5rem 2.5rem;
         border-radius: .3rem;
         border: none;
         background-color: color(uniTextElements);
         cursor: pointer;
-        box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.13);
-
+        box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.13);
+        transition: box-shadow .25s ease-out;
+        
+        &:hover{
+            box-shadow: 0px 0px 9px 1px rgba(0, 0, 0, 0.205);
+        }
         &::before {
             @include getPseudoIcon(1rem, 0, "\f30a", color(lightModeInput));
         }
@@ -29,13 +33,6 @@
     margin: 0 5%;
     max-width: 450px;
     display: none;
-
-    &.details-open{
-        display: block;
-        @include media-m {
-            display: flex;
-        }
-    }
 
     @include media-s {
         margin: 0 auto;
@@ -58,6 +55,9 @@
         height: 100%;
         overflow: hidden;
 
+        @include media-l{
+            height: 562px;
+        }
         .details__flag {
             width: 100%;
             height: 100%;
@@ -122,7 +122,7 @@
     &__btn {
         padding: .3rem .75rem;
         border-radius: .3rem;
-        margin: .75rem .3rem 0 0;
+        margin: .75rem .5rem 0 0;
         min-width: 5.5rem;
         border: none;
         cursor: pointer;
@@ -134,4 +134,15 @@
             box-shadow: 0px 0px 9px 1px rgba(0, 0, 0, 0.205);
         }
     }
+}
+
+.details-open .details{
+    display: block;
+    @include media-m {
+        display: flex;
+    }
+}
+
+.details-open .details__return{
+    display: block;
 }

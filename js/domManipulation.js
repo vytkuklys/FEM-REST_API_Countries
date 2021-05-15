@@ -13,59 +13,70 @@ import {
 export const renderCountryCard = (flag, country, capital, region, population) => {
     const output = document.getElementById('output');
 
-    const sectionEl = document.createElement('section');
-    setAttributes(sectionEl, {
+    const detailsCard = document.createElement('section');
+    setAttributes(detailsCard, {
         "class": "output__box"
     });
-    output.appendChild(sectionEl);
+    output.appendChild(detailsCard);
 
-    const imgEl = document.createElement('img');
-    setAttributes(imgEl, {
+    const flagCard = document.createElement('div');
+    setAttributes(flagCard, {
         "data-src": `${flag}`,
-        "alt": `${country} flag`,
-        "class": "box__flag"
+        "class": "output__flag"
     });
-    sectionEl.appendChild(imgEl);
+    detailsCard.appendChild(flagCard);
 
-    const textBoxEl = document.createElement('div');
-    textBoxEl.classList.add("output__info");
-    sectionEl.appendChild(textBoxEl);
+    const infoCard = document.createElement('div');
+    infoCard.classList.add("output__info");
+    detailsCard.appendChild(infoCard);
 
-    const h3El = document.createElement('h3');
-    h3El.classList.add('output__info-title');
-    h3El.textContent = `${country}`;
-    textBoxEl.appendChild(h3El);
+    const title = document.createElement('h3');
+    title.classList.add('output__info-title');
+    title.textContent = `${country}`;
+    infoCard.appendChild(title);
 
-    const p1El = document.createElement('p');
-    p1El.classList.add('output--bold');
-    p1El.textContent = "Population: ";
-    textBoxEl.appendChild(p1El);
+    const populationTitle = document.createElement('p');
+    populationTitle.classList.add('output--bold');
+    populationTitle.textContent = "Population: ";
+    infoCard.appendChild(populationTitle);
 
-    const populationTextEl = document.createElement('span');
-    populationTextEl.classList.add('output__info-population');
-    populationTextEl.textContent = `${population.toLocaleString('en')}`;
-    p1El.appendChild(populationTextEl);
+    const populationInfo = document.createElement('span');
+    populationInfo.classList.add('output__info-population');
+    populationInfo.textContent = `${population.toLocaleString('en')}`;
+    populationTitle.appendChild(populationInfo);
 
-    const p2El = document.createElement('p');
-    p2El.classList.add('output--bold');
-    p2El.textContent = "Region: ";
-    textBoxEl.appendChild(p2El);
+    const regionTitle = document.createElement('p');
+    regionTitle.classList.add('output--bold');
+    regionTitle.textContent = "Region: ";
+    infoCard.appendChild(regionTitle);
 
-    const regionTextEl = document.createElement('span');
-    regionTextEl.classList.add('output__info-region');
-    regionTextEl.textContent = `${region}`;
-    p2El.appendChild(regionTextEl);
+    const regionInfo = document.createElement('span');
+    regionInfo.classList.add('output__info-region');
+    regionInfo.textContent = `${region}`;
+    regionTitle.appendChild(regionInfo);
 
-    const p3El = document.createElement('p');
-    p3El.classList.add('output--bold');
-    p3El.textContent = "Capital: ";
-    textBoxEl.appendChild(p3El);
+    const capitalTitle = document.createElement('p');
+    capitalTitle.classList.add('output--bold');
+    capitalTitle.textContent = "Capital: ";
+    infoCard.appendChild(capitalTitle);
 
-    const capitalTextEl = document.createElement('span');
-    capitalTextEl.classList.add('output__info-capital');
-    capitalTextEl.textContent = `${capital}`;
-    p3El.appendChild(capitalTextEl);
+    const capitalInfo = document.createElement('span');
+    capitalInfo.classList.add('output__info-capital');
+    capitalInfo.textContent = `${capital}`;
+    capitalTitle.appendChild(capitalInfo);
 
+}
+
+export const renderLoader = () => {
+    const body = document.body;
+    const loader = document.createElement('div');
+    loader.classList.add('loader');
+
+    const spinner = document.createElement('div');
+    spinner.classList.add('spinner');
+    loader.appendChild(spinner);
+
+    body.appendChild(loader);
 }
 
 export const toggleRegionMenu = (e = 0) => {
@@ -86,9 +97,9 @@ export const switchTheme = (e) => {
 }
 
 export const hideDetailsPage = () => {
-    const detailsContainer = document.querySelector('.details');
+    const body = document.body;
     if (isDetailsPageOpen()) {
-        detailsContainer.classList.remove('details-open');
+        body.classList.remove('details-open')
     }
 }
 
@@ -101,7 +112,7 @@ export const deleteAllCountries = () => {
 
 export const renderDetailsPage = async json => {
 
-    const detailsContainer = document.querySelector('.details');
+    const body = document.body;
     const img = document.querySelector('.details__flag');
     const title = document.querySelector('.details__title');
     const lists = document.querySelectorAll('.details__list-items');
@@ -113,7 +124,6 @@ export const renderDetailsPage = async json => {
         const items = Array.from(list.children);
         items.forEach((item) => {
             const id = item.id;
-            //first if statement checks for native name, region, sub region and capital
             if (typeof (json[id]) === 'string') {
                 item.children[0].textContent = json[id];
             } else if (id === 'population') {
@@ -125,7 +135,33 @@ export const renderDetailsPage = async json => {
             }
         });
     });
-    detailsContainer.classList.add('details-open');
+    body.classList.add('details-open');
+}
+
+export const renderNoResultsFound = () => {
+    const output = document.getElementById('output');
+    const container = document.createElement('div');
+    container.classList.add('no-results');
+
+    const img = document.createElement('img');
+    setAttributes(img, {
+        "src": 'images/no_results.svg',
+        "alt": '',
+        "class": 'no-results__img'
+    });
+    container.appendChild(img);
+
+    const title = document.createElement('h3');
+    title.classList.add('no-results__title');
+    title.textContent = "No results found";
+    container.appendChild(title);
+
+    const subtitle = document.createElement('p');
+    subtitle.classList.add('no-results__info');
+    subtitle.innerHTML = "Your search did not match any of the <br/> countries of this planet";
+    container.appendChild(subtitle);
+
+    output.appendChild(container);
 }
 
 export const deleteBordersButtons = () => {
@@ -148,7 +184,6 @@ export const renderBordersButtons = names => {
             button.textContent = name;
             buttonsContainer.appendChild(button);
         });
-        // addBtnEvents();
     } else {
         const none = document.createElement('span');
         none.textContent = 'None';
@@ -156,19 +191,10 @@ export const renderBordersButtons = names => {
     }
 }
 
-// const addBtnEvents = () => {
-//     const btns = document.querySelectorAll('.details__btn');
-//     btns.forEach(btn => {
-//         btn.addEventListener('click', () => {
-//             const country = btn.textContent;
-//             console.log(country, 'ok')
-//             handleSelectedCountry(country);
-//         }, {
-//             once: true
-//         });
-//     })
-// }
-
 export const toggleExitBtn = () => {
     elements.btnExit.classList.add('btn-exit__show');
+}
+
+export const toggleLoader = () => {
+    document.querySelector('.loader').classList.toggle('show__JS');
 }

@@ -1,6 +1,8 @@
 @import '_config.scss';
 @import '_darkmode.scss';
 @import '_details.scss';
+@import '_noResults.scss';
+@import '_loader.scss';
 
 * {
     margin: 0;
@@ -21,19 +23,24 @@ body {
 }
 
 .header {
-    width: 100%;
     height: 5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 0 5%;
     box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.062);
 
-    &__h2{
-        font-size: clamp(1rem, 2.25vw, 1.5rem);
+    &__container {
+        display: flex;
+        max-width: 1375px;
+        margin: 0 auto;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
     }
 
-    &__button{
+    &__h2 {
+        font-size: clamp(1rem, 2.25vw, 1.65rem);
+    }
+
+    &__button {
         position: relative;
         background-color: transparent;
         border: none;
@@ -44,45 +51,57 @@ body {
 
         &::before {
             @include getPseudoIcon(0, 0, "\f186", color(lightModeInput));
-        } 
+        }
     }
 }
 
 main {
-    width: 95%;
+    width: 96%;
     margin: 0 auto;
+    max-width: 1375px;
 
-    @include media-s{
+    @include media-s {
         width: 90%;
     }
 
 }
 
-ul{
+ul {
     list-style-type: none;
+}
+
+.details-open .controls {
+    display: none;
 }
 
 .controls {
     width: 100%;
     padding: 1.75rem 0 1.25rem;
+    display: block;
 
-    @include media-m{
+    @include media-m {
         display: flex;
         justify-content: space-between;
+        padding: 3rem 0;
     }
 
     &__input {
         position: relative;
         max-width: 356px;
-        
+
+        @include media-m {
+            max-width: initial;
+            width: 35%;
+        }
+
         &::before {
             @include getPseudoIcon(1.65rem, 0, "\f002", color(lightModeInput));
         }
-        
+
         &-text {
             width: 100%;
             padding: 1.25rem 4rem;
-            border-radius: .5rem;
+            border-radius: .35rem;
             border: none;
             outline-color: transparent;
             color: color(lightModeInput);
@@ -93,6 +112,7 @@ ul{
                 border: none;
             }
         }
+
         &-btn {
             position: absolute;
             right: 0;
@@ -117,24 +137,55 @@ ul{
                 display: inline-block;
             }
         }
+
+        &-return {
+            position: relative;
+            padding: .5rem 2rem .5rem 2.5rem;
+            border-radius: .3rem;
+            border: none;
+            display: none;
+            background-color: color(uniTextElements);
+            cursor: pointer;
+            box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.13);
+
+            &::before {
+                @include getPseudoIcon(1rem, 0, "\f30a", color(lightModeInput));
+            }
+        }
+
+        &.details-open {
+            .controls__input-text {
+                display: none;
+            }
+
+            .controls__input-btn {
+                display: none;
+            }
+
+            .controls__input-return {
+                display: block;
+            }
+        }
     }
 
     .controls__select {
         max-width: 200px;
         margin: 2.5rem 0 5%;
         position: relative;
+        border-radius: .35rem;
         box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
 
-        @include media-m{
+        @include media-m {
             margin: initial;
             max-width: initial;
             min-width: 200px;
         }
+
         .controls__title {
             position: relative;
             padding: 1rem 1.65rem;
-            border-radius: .5rem;
             font-weight: 600;
+            border-radius: .35rem;
             margin-bottom: .3rem;
             cursor: pointer;
 
@@ -155,8 +206,8 @@ ul{
             display: flex;
             flex-direction: column;
             width: 100%;
-            border-radius: .5rem;
-            padding: .5rem 0;
+            border-radius: .35rem;
+            padding: .85rem 0;
             box-shadow: 0px 1px 9px 3px rgba(0, 0, 0, 0.068);
             transform: scaleY(0);
             position: absolute;
@@ -164,6 +215,10 @@ ul{
             transform-origin: top;
             transition: transform .3s ease-in-out;
             background-color: color(uniTextElements);
+
+            @include media-m {
+                margin-top: .25rem;
+            }
         }
 
         .controls__select-item {
@@ -193,31 +248,36 @@ ul{
             transform: scaleY(1);
         }
     }
+
+    &.hide {
+        display: none;
+    }
 }
 
 .output {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 2.5rem;
+    justify-content: center;
 
-
-    @include media-s{
-        justify-content: center;
+    @include media-m {
+        gap: 3.5rem;
     }
 
-    @include media-m{
+    @include media-l {
         justify-content: space-between;
+        gap: .5rem;
     }
 
     &__box {
-        max-width: 295px;
-        border-radius: .5rem;
+        width: 290px;
+        border-radius: .35rem;
         margin-bottom: 2.75rem;
         cursor: pointer;
         box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.068);
         transition: box-shadow .25s ease-out;
 
-        &:hover{
+        &:hover {
             box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.212);
         }
     }
@@ -227,6 +287,7 @@ ul{
         margin: -.3rem 0 0;
         border-bottom-left-radius: .5rem;
         border-bottom-right-radius: .5rem;
+        max-height: 215px;
 
         &-title {
             padding-bottom: 1.1rem;
@@ -244,11 +305,15 @@ ul{
         font-weight: 600;
         padding: .15rem 0;
     }
-    
-    img {
+
+    &__flag {
         width: 100%;
         height: 200px;
         object-fit: cover;
+        // background-image: url('https://restcountries.eu/data/usa.svg');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
         border-top-left-radius: .5rem;
         border-top-right-radius: .5rem;
     }

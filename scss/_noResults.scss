@@ -1,0 +1,32 @@
+.no-results {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 72.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+
+    @include media-s {
+        top: 55%;
+    }
+}
+
+.no-results__title {
+    width: fit-content;
+    padding: 1.5rem 0 .5rem;
+    font-size: 1.35rem;
+}
+
+.no-results__info {
+    width: fit-content;
+    text-align: center;
+    font-size: .9rem;
+}
+
+.no-results__img {
+    padding-right: 1.25rem;
+    opacity: .95;
+}

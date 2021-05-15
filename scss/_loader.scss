@@ -1,0 +1,25 @@
+.loader {
+    padding: 10rem 1.5rem 1.5rem;
+    margin: 0 auto;
+    display: none;
+    width: fit-content;
+
+    .spinner {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-top: .25rem solid rgba(141, 141, 245, 0.726);
+        border-right: .25rem solid transparent;
+        border-radius: 50%;
+        margin-top: -2rem;
+        animation: spinner 1.05s linear infinite;
+    }
+
+    @keyframes spinner {
+        100% {
+            transform: rotate(360deg)
+        }
+    }
+    &.show__JS{
+        display: block;
+    }
+}

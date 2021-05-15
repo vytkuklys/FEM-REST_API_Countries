@@ -10,8 +10,8 @@ export const isDarkTheme = () => {
 }
 
 export const isDetailsPageOpen = () => {
-    const detailsContainer = document.querySelector('.details');
-    return detailsContainer.classList.contains('details-open');
+    const body = document.body;
+    return body.classList.contains('details-open');
 }
 
 export const shouldDisplayBorderNames = borders => {
@@ -24,8 +24,7 @@ export const lazyLoad = target => {
 
             if (entry.isIntersecting) {
                 let url = entry.target.getAttribute('data-src');
-                entry.target.setAttribute('src', `${url}`);
-                console.log(entry.target);
+                entry.target.style.backgroundImage = `url("${url}")`;
                 observer.disconnect();
             }
         })
