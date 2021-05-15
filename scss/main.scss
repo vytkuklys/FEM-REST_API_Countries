@@ -29,15 +29,15 @@ body {
 
     &__container {
         display: flex;
-        max-width: 1375px;
+        max-width: 1370px;
         margin: 0 auto;
         justify-content: space-between;
         align-items: center;
         height: 100%;
     }
 
-    &__h2 {
-        font-size: clamp(1rem, 2.25vw, 1.65rem);
+    &__title {
+        font-size: clamp(1rem, 2.25vw, 1.6rem);
     }
 
     &__button {
@@ -58,7 +58,7 @@ body {
 main {
     width: 96%;
     margin: 0 auto;
-    max-width: 1375px;
+    max-width: 1370px;
 
     @include media-s {
         width: 90%;
@@ -91,7 +91,7 @@ ul {
 
         @include media-m {
             max-width: initial;
-            width: 35%;
+            width: 37.5%;
         }
 
         &::before {
@@ -270,7 +270,7 @@ ul {
     }
 
     &__box {
-        width: 290px;
+        width: 280px;
         border-radius: .35rem;
         margin-bottom: 2.75rem;
         cursor: pointer;
@@ -308,9 +308,8 @@ ul {
 
     &__flag {
         width: 100%;
-        height: 200px;
+        height: 175px;
         object-fit: cover;
-        // background-image: url('https://restcountries.eu/data/usa.svg');
         background-repeat: no-repeat;
         background-position: center center;
         background-size: cover;
